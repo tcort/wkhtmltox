@@ -1,0 +1,25 @@
+{
+  "name": "node-wkhtmltopdf",
+  "version": "0.0.0",
+  "description": "wkhtmltopdf bindings for node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/tcort/node-wkhtmltopdf.git"
+  },
+  "keywords": [
+    "wkhtmltopdf",
+    "html",
+    "pdf",
+    "conversion"
+  ],
+  "author": "Thomas Cort <linuxgeek@gmail.com>",
+  "license": "LGPLv3+",
+  "bugs": {
+    "url": "https://github.com/tcort/node-wkhtmltopdf/issues"
+  },
+  "homepage": "https://github.com/tcort/node-wkhtmltopdf"
+}
