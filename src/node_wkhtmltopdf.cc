@@ -10,7 +10,7 @@
 
 using namespace v8;
 
-Handle<Value> Convert(const Arguments& args) {
+Handle<Value> HtmlToPdf(const Arguments& args) {
 
 	HandleScope scope;
 
@@ -96,6 +96,7 @@ Handle<Value> Convert(const Arguments& args) {
 	// Destroy the converter.
 	wkhtmltopdf_destroy_converter(c);
 
+	// TODO use the wkhtmltopdf CAPI callbacks to make this function async
 	// Return the result
 	return scope.Close(actualBuffer);
 }
@@ -112,7 +113,7 @@ void init(Handle<Object> exports) {
 
 	AtInit();
 
-	exports->Set(String::NewSymbol("convert"), FunctionTemplate::New(Convert)->GetFunction());
+	exports->Set(String::NewSymbol("htmlToPdf"), FunctionTemplate::New(HtmlToPdf)->GetFunction());
 
 	node::AtExit(AtExit);
 }
