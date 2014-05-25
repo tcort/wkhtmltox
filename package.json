@@ -1,7 +1,7 @@
 {
-  "name": "NodeWkHtmlToPdf",
+  "name": "wkhtmltox",
   "version": "0.0.0",
-  "description": "wkhtmltopdf bindings for node.js",
+  "description": "native wkhtmltox bindings for node.js",
   "main": "index.js",
   "scripts": {
     "install": "node-gyp rebuild",
@@ -9,9 +9,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/tcort/NodeWkHtmlToPdf.git"
+    "url": "git://github.com/tcort/wkhtmltox.git"
   },
   "keywords": [
+    "wkhtmltox",
     "wkhtmltopdf",
     "html",
     "pdf",
@@ -20,9 +21,9 @@
   "author": "Thomas Cort <linuxgeek@gmail.com>",
   "license": "LGPLv3+",
   "bugs": {
-    "url": "https://github.com/tcort/NodeWkHtmlToPdf/issues"
+    "url": "https://github.com/tcort/wkhtmltox/issues"
   },
-  "homepage": "https://github.com/tcort/NodeWkHtmlToPdf",
+  "homepage": "https://github.com/tcort/wkhtmltox",
   "devDependencies": {
     "expect.js": "0.3.x",
     "mocha": "1.19.x"

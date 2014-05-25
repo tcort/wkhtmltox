@@ -3,7 +3,7 @@
         {
             "target_name": "addon",
             "sources": [
-                "src/NodeWkHtmlToPdf.cc",
+                "src/wkhtmltox.cc",
                 "src/addon.cc"
             ],
             "libraries": [

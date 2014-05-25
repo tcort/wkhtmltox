@@ -1,3 +1,4 @@
+#include <map>
 #include <string.h>
 
 #include <stdbool.h>
@@ -8,40 +9,42 @@
 #include <node_buffer.h>
 #include <v8.h>
 
-#include "NodeWkHtmlToPdf.h"
+#include "wkhtmltox.h"
 
 using namespace v8;
 
-Persistent<Function> NodeWkHtmlToPdf::constructor;
+Persistent<Function> wkhtmltox::constructor;
+std::map<wkhtmltopdf_converter *,void *> callback_map; // map converts to Node callbacks
+// TODO Add in htmlToPdf, remove in callback
 
 // Placeholder constructor.
-NodeWkHtmlToPdf::NodeWkHtmlToPdf() {
+wkhtmltox::wkhtmltox() {
 }
 
 // Placeholder destructor
-NodeWkHtmlToPdf::~NodeWkHtmlToPdf() {
+wkhtmltox::~wkhtmltox() {
 }
 
-void NodeWkHtmlToPdf::Init(Handle<Object> exports) {
+void wkhtmltox::Init(Handle<Object> exports) {
 
 	// Prepare constructor template
 	Local<FunctionTemplate> tpl = FunctionTemplate::New(New);
-	tpl->SetClassName(String::NewSymbol("NodeWkHtmlToPdf"));
+	tpl->SetClassName(String::NewSymbol("wkhtmltox"));
 	tpl->InstanceTemplate()->SetInternalFieldCount(1);
 
 	// Prototypes
-	tpl->PrototypeTemplate()->Set(String::NewSymbol("htmlToPdf"), FunctionTemplate::New(htmlToPdf)->GetFunction());
+	tpl->PrototypeTemplate()->Set(String::NewSymbol("toPdf"), FunctionTemplate::New(toPdf)->GetFunction());
 	constructor = Persistent<Function>::New(tpl->GetFunction());
-	exports->Set(String::NewSymbol("NodeWkHtmlToPdf"), constructor);
+	exports->Set(String::NewSymbol("wkhtmltox"), constructor);
 }
 
-Handle<Value> NodeWkHtmlToPdf::New(const Arguments& args) {
+Handle<Value> wkhtmltox::New(const Arguments& args) {
 
 	HandleScope scope;
 
 	if (args.IsConstructCall()) {
 		// Invoked with 'new'
-		NodeWkHtmlToPdf* obj = new NodeWkHtmlToPdf();
+		wkhtmltox* obj = new wkhtmltox();
 		obj->Wrap(args.This());
 		return args.This();
 	} else {
@@ -52,14 +55,14 @@ Handle<Value> NodeWkHtmlToPdf::New(const Arguments& args) {
 	}
 }
 
-Handle<Value> NodeWkHtmlToPdf::htmlToPdf(const Arguments& args) {
+Handle<Value> wkhtmltox::toPdf(const Arguments& args) {
 
 	HandleScope scope;
 
 	int rc = 0;
 
 	// TODO allow a callback to be passed in args, then set it on obj
-	// NodeWkHtmlToPdf* obj = ObjectWrap::Unwrap<NodeWkHtmlToPdf>(args.This());
+	// wkhtmltox* obj = ObjectWrap::Unwrap<wkhtmltox>(args.This());
 
 	// Output to Buffer Conversion
 	const unsigned char *data = NULL;
