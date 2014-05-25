@@ -1,9 +1,9 @@
 {
     "targets": [
         {
-            "target_name": "node_wkhtmltopdf",
+            "target_name": "NodeWkHtmlToPdf",
             "sources": [
-                "src/node_wkhtmltopdf.cc"
+                "src/NodeWkHtmlToPdf.cc"
             ],
             "libraries": [
                 "-lwkhtmltox"

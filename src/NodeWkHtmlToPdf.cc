@@ -119,4 +119,4 @@ void init(Handle<Object> exports) {
 }
 
 
-NODE_MODULE(node_wkhtmltopdf, init)
+NODE_MODULE(NodeWkHtmlToPdf, init)

@@ -1,1 +1,1 @@
-module.exports = require('./build/Release/node_wkhtmltopdf');
+module.exports = require('./build/Release/NodeWkHtmlToPdf');
