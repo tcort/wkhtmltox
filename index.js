@@ -1,1 +1,1 @@
-module.exports = require('./build/Release/NodeWkHtmlToPdf');
+module.exports = require('./build/Release/addon').NodeWkHtmlToPdf;

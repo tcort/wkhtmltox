@@ -1,9 +1,10 @@
 {
     "targets": [
         {
-            "target_name": "NodeWkHtmlToPdf",
+            "target_name": "addon",
             "sources": [
-                "src/NodeWkHtmlToPdf.cc"
+                "src/NodeWkHtmlToPdf.cc",
+                "src/addon.cc"
             ],
             "libraries": [
                 "-lwkhtmltox"

@@ -1,10 +1,11 @@
 var fs = require('fs');
 var expect = require('expect.js');
-var node_wkhtmltopdf = require('../index');
+var NodeWkHtmlToPdf = require('../index');
 
-describe('node-wkhtmltopdf', function () {
+describe('NodeWkHtmlToPdf', function () {
 	it ('should define a method called htmlToPdf()', function () {
-		var result = node_wkhtmltopdf.htmlToPdf();
+		var wkHtmlToPdf = new NodeWkHtmlToPdf();
+		var result = wkHtmlToPdf.htmlToPdf();
 		fs.writeFileSync('test.pdf', result);
 		delete result;
 	});

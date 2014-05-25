@@ -8,13 +8,58 @@
 #include <node_buffer.h>
 #include <v8.h>
 
+#include "NodeWkHtmlToPdf.h"
+
 using namespace v8;
 
-Handle<Value> HtmlToPdf(const Arguments& args) {
+Persistent<Function> NodeWkHtmlToPdf::constructor;
+
+// Placeholder constructor.
+NodeWkHtmlToPdf::NodeWkHtmlToPdf() {
+}
+
+// Placeholder destructor
+NodeWkHtmlToPdf::~NodeWkHtmlToPdf() {
+}
+
+void NodeWkHtmlToPdf::Init(Handle<Object> exports) {
+
+	// Prepare constructor template
+	Local<FunctionTemplate> tpl = FunctionTemplate::New(New);
+	tpl->SetClassName(String::NewSymbol("NodeWkHtmlToPdf"));
+	tpl->InstanceTemplate()->SetInternalFieldCount(1);
+
+	// Prototypes
+	tpl->PrototypeTemplate()->Set(String::NewSymbol("htmlToPdf"), FunctionTemplate::New(htmlToPdf)->GetFunction());
+	constructor = Persistent<Function>::New(tpl->GetFunction());
+	exports->Set(String::NewSymbol("NodeWkHtmlToPdf"), constructor);
+}
+
+Handle<Value> NodeWkHtmlToPdf::New(const Arguments& args) {
+
+	HandleScope scope;
+
+	if (args.IsConstructCall()) {
+		// Invoked with 'new'
+		NodeWkHtmlToPdf* obj = new NodeWkHtmlToPdf();
+		obj->Wrap(args.This());
+		return args.This();
+	} else {
+		// Invoked without 'new', turn it into a new invocation.
+		const int argc = 0;
+		Local<Value> argv[argc] = { };
+		return scope.Close(constructor->NewInstance(argc, argv));
+	}
+}
+
+Handle<Value> NodeWkHtmlToPdf::htmlToPdf(const Arguments& args) {
 
 	HandleScope scope;
 
 	int rc = 0;
+
+	// TODO allow a callback to be passed in args, then set it on obj
+	// NodeWkHtmlToPdf* obj = ObjectWrap::Unwrap<NodeWkHtmlToPdf>(args.This());
 
 	// Output to Buffer Conversion
 	const unsigned char *data = NULL;
@@ -61,7 +106,7 @@ Handle<Value> HtmlToPdf(const Arguments& args) {
 	wkhtmltopdf_add_object(c, os, NULL);
 
 	// Perform the conversion.
-	rc = wkhtmltopdf_convert(c); // TODO check return code
+	rc = wkhtmltopdf_convert(c); // TODO change this to async (begin_conversion).
 	if (rc == 0) {
 		wkhtmltopdf_destroy_converter(c); // Clean-up
 		ThrowException(Exception::Error(String::New("ConversionFailure")));
@@ -100,23 +145,3 @@ Handle<Value> HtmlToPdf(const Arguments& args) {
 	// Return the result
 	return scope.Close(actualBuffer);
 }
-
-void AtInit(void) {
-	wkhtmltopdf_init(false);
-}
-
-void AtExit(void *arg) {
-	wkhtmltopdf_deinit();
-}
-
-void init(Handle<Object> exports) {
-
-	AtInit();
-
-	exports->Set(String::NewSymbol("htmlToPdf"), FunctionTemplate::New(HtmlToPdf)->GetFunction());
-
-	node::AtExit(AtExit);
-}
-
-
-NODE_MODULE(NodeWkHtmlToPdf, init)
