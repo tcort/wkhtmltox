@@ -1,11 +1,10 @@
 var fs = require('fs');
 var expect = require('expect.js');
-var WkHtmlToX = require('../index');
+var wkhtmltox = require('../index');
 
-describe('WkHtmlToX', function () {
+describe('wkhtmltox', function () {
 	it ('should define a method called toPdf()', function () {
-		var wkHtmlToX = new WkHtmlToX();
-		var result = wkHtmlToX.toPdf();
+		var result = wkhtmltox.toPdf();
 		fs.writeFileSync('test.pdf', result);
 		delete result;
 	});

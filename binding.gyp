@@ -3,7 +3,6 @@
         {
             "target_name": "addon",
             "sources": [
-                "src/wkhtmltox.cc",
                 "src/addon.cc"
             ],
             "libraries": [

@@ -1,1 +1,1 @@
-module.exports = require('./build/Release/addon').wkhtmltox;
+module.exports = require('./build/Release/addon');
