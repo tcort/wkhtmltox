@@ -55,7 +55,7 @@ Handle<Value> ToPdf(const Arguments& args) {
 
 	// Define object settings.
 	// TODO accept these via args
-	wkhtmltopdf_set_object_setting(os, "page", "http://www.tomcort.com/");
+	wkhtmltopdf_set_object_setting(os, "page", "http://www.google.ca/");
 	wkhtmltopdf_add_object(c, os, NULL);
 
 	// Perform the conversion.
