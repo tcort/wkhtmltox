@@ -1,5 +1,5 @@
 all:
-	cd .. && node-gyp rebuild
+	cd .. && npm install
 
 check:
 	cd .. && npm test
