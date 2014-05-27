@@ -24,6 +24,7 @@
     "url": "https://github.com/tcort/wkhtmltox/issues"
   },
   "homepage": "https://github.com/tcort/wkhtmltox",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "expect.js": "0.3.x",
     "mocha": "1.19.x"
