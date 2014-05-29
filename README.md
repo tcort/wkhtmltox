@@ -1,5 +1,9 @@
 # wkhtmltox
 
+[![NPM](https://nodei.co/npm/wkhtmltox.png)](https://nodei.co/npm/wkhtmltox/)
+
+[![Build Status](https://api.travis-ci.org/tcort/wkhtmltox.png?branch=master)](http://travis-ci.org/tcort/wkhtmltox)
+
 The goal of this module is to provide high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.
 
 This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed module named [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf).
