@@ -1,23 +1,19 @@
 # wkhtmltox
 
-The goal of this package is to provide native wkhtmltox bindings for node.js.
+The goal of this module is to provide high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.
+
+This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed module named [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf).
 
 ## Status
 
-Current Status: **Pre-Alpha**
+Current Status: **Under Active Development**
 
-Summary: working towards a proof of concept that can render PDFs.
+Summary: Rendering PDFs and images from HTML works. I'm currently trying a few different approaches to improve performance.
 
 ## Requirements
 
 * [nodejs](http://nodejs.org/)
-* [libwkhtmltox](http://wkhtmltopdf.org/)
-
-## Usage
-
-Don't use it yet, it isn't even close to working for general purpose
-rendering. The code is mainly here to share my progress and get
-input from others.
+* [wkhtmltopdf/wkhtmltoimage](http://wkhtmltopdf.org/)
 
 ## Contributing
 
@@ -26,3 +22,11 @@ input from others.
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Failed Attempts
+
+For other intrepid adventurers, here are some approaches I tried that failed:
+
+- native bindings - tried to do native bindings for libwkhtmltox. This had all kinds of issue come up on various platforms. For example, on FreeBSD I was getting a seg fault during webkit's SSL initialization (what?!?!), on Mac OS X I was getting Qt Threading errors when code that used the module was run under mocha, on Linux it worked fine.
+- multi-threaded unix domain socket server - tried to push the libwkhtmltox interface out into a server that a node library would connect to through a unix domain socket. This had issues with memory leaks. I don't think Qt/WebKit/libwkhtmltox is a good fit for long running processes.
+- multi-process unix domain socket server - tried the same as above but with processes. The issue I ran into was that the libwkhtmltox init function had to be called within the process that did the rendering. If we're going to do fork() and then initialization after, then there isn't much advantage over exec()'ing the wkhtmltopdf binary.
