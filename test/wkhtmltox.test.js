@@ -6,7 +6,7 @@ var expect = require('expect.js');
 var wkhtmltox = require('../index');
 
 describe('wkhtmltox', function () {
-	this.timeout(10000);
+	this.timeout(30000);
 	describe('pdf()', function () {
 		it ('should be defined', function () {
 			var converter = new wkhtmltox();

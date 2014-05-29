@@ -33,6 +33,9 @@
     "expect.js": "0.3.x",
     "mocha": "1.19.x"
   },
+  "engines": {
+    "node": ">= 0.10.0"
+  },
   "jshintConfig": {
     "bitwise": true,
     "curly": true,
