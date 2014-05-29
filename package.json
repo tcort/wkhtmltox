@@ -31,7 +31,7 @@
   "devDependencies": {
     "jshint": "2.5.x",
     "expect.js": "0.3.x",
-    "mocha": "1.19.x"
+    "mocha": "1.20.x"
   },
   "engines": {
     "node": ">= 0.10.0"
