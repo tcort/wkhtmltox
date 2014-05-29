@@ -12,10 +12,11 @@
     "url": "git://github.com/tcort/wkhtmltox.git"
   },
   "keywords": [
-    "wkhtmltox",
     "wkhtmltopdf",
+    "wkhtmltoimage",
     "html",
     "pdf",
+    "image",
     "conversion"
   ],
   "author": "Thomas Cort <linuxgeek@gmail.com>",
