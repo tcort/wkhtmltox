@@ -12,7 +12,7 @@ This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed mo
 
 Current Status: **Under Active Development**
 
-Summary: Rendering PDFs and images from HTML works. I'm currently trying a few different approaches to improve performance.
+Summary: Rendering PDFs and images from HTML works. I'm working on some changes to make it faster. So far I've achieved about a 2.5x speed-up in PDF rendering.
 
 ## Requirements
 
@@ -29,7 +29,7 @@ Summary: Rendering PDFs and images from HTML works. I'm currently trying a few d
 
 ## Failed Attempts
 
-For other intrepid adventurers, here are some approaches I tried that failed:
+For other intrepid adventurers, here are some approaches I tried to make rendering take less time that didn't quite work out:
 
 - native bindings - tried to do native bindings for libwkhtmltox. This had all kinds of issue come up on various platforms. For example, on FreeBSD I was getting a seg fault during webkit's SSL initialization (what?!?!), on Mac OS X I was getting Qt Threading errors when code that used the module was run under mocha, on Linux it worked fine.
 - multi-threaded unix domain socket server - tried to push the libwkhtmltox interface out into a server that a node library would connect to through a unix domain socket. This had issues with memory leaks. I don't think Qt/WebKit/libwkhtmltox is a good fit for long running processes.
