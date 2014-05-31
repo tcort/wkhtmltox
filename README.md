@@ -19,20 +19,20 @@ Summary: Rendering PDFs and images from HTML works. I'm working on some changes 
 
 HTML to PDF
 
-    var wkhtmltox = require("../index");
+    var wkhtmltox = require("wkhtmltox");
     var converter = new wkhtmltox();
     converter.pdf(html, { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
 
 HTML to JPG and PNG
 
-    var wkhtmltox = require("../index");
+    var wkhtmltox = require("wkhtmltox");
     var converter = new wkhtmltox();
     converter.image(html, { format: "jpg" }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
     converter.image(html, { format: "png" }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
 
 HTML to PDF Buffer
 
-    var wkhtmltox = require("../index");
+    var wkhtmltox = require("wkhtmltox");
     var converter = new wkhtmltox();
     var bufs = [];
     var pdfstream = converter.pdf(body, options);
@@ -41,7 +41,7 @@ HTML to PDF Buffer
 
 HTML URL to PDF
 
-    var wkhtmltox = require("../index");
+    var wkhtmltox = require("wkhtmltox");
     var converter = new wkhtmltox();
     converter.pdf("http://www.tomcort.com/", { pageSize: "letter"      }).pipe(res);
     converter.pdf("http://www.tomcort.com/", {   output: "tomcort.pdf" }); // save directly to file
