@@ -11,13 +11,13 @@ describe("wkhtmltox", function() {
     var kitchenSinkHtml = fs.readFileSync(path.join(__dirname, "input", "kitchen-sink.html"));
     var converter = new wkhtmltox();
 
-    before(function(done) {
+    before(function() {
         function cleanDir(dirPath) {
             var files;
             try {
                 files = fs.readdirSync(dirPath);
             } catch (e) {
-                done(e);
+                return;
             }
             if (files.length > 0) {
                 for (var i = 0; i < files.length; i++) {
@@ -29,7 +29,6 @@ describe("wkhtmltox", function() {
             }
         }
         cleanDir(path.join(__dirname, "output"));
-        setTimeout(done, 2000);
     });
 
     describe("pdf()", function() {
@@ -39,7 +38,7 @@ describe("wkhtmltox", function() {
         it("should be a function", function() {
             expect(converter.pdf).to.be.a("function");
         });
-        it("should convert html to pdf", function(done) {
+        it("should convert html to pdf from HTML string with pipe() output", function(done) {
             converter.pdf(kitchenSinkHtml, { pageSize: "letter" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.pdf"))).on("finish", done);
         });
     });
