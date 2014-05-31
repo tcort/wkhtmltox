@@ -13,7 +13,38 @@ Summary: Rendering PDFs and images from HTML works. I'm working on some changes 
 ## Requirements
 
 * [nodejs](http://nodejs.org/)
-* [wkhtmltopdf/wkhtmltoimage](http://wkhtmltopdf.org/)
+* [wkhtmltopdf/wkhtmltoimage](http://wkhtmltopdf.org/) v0.12 (with patched qt) or later.
+
+## Examples
+
+HTML to PDF
+
+    var wkhtmltox = require("../index");
+    var converter = new wkhtmltox();
+    converter.pdf(html, { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
+
+HTML to JPG and PNG
+
+    var wkhtmltox = require("../index");
+    var converter = new wkhtmltox();
+    converter.image(html, { format: "jpg" }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
+    converter.image(html, { format: "png" }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
+
+HTML to PDF Buffer
+
+    var wkhtmltox = require("../index");
+    var converter = new wkhtmltox();
+    var bufs = [];
+    var pdfstream = converter.pdf(body, options);
+    pdfstream.on('data', function(data) {               bufs.push(data); });
+    pdfstream.on('end',  function()     { cb(null, Buffer.concat(bufs)); });
+
+HTML URL to PDF
+
+    var wkhtmltox = require("../index");
+    var converter = new wkhtmltox();
+    converter.pdf("http://www.tomcort.com/", { pageSize: "letter"      }).pipe(res);
+    converter.pdf("http://www.tomcort.com/", {   output: "tomcort.pdf" }); // save directly to file
 
 ## Contributing
 
