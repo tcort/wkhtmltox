@@ -1,6 +1,8 @@
 # wkhtmltox
 
 The goal of this module is to provide high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.
+Those two tools are from the [wkhtmltopdf](http://wkhtmltopdf.org/), a software package that
+provides utilities for rendering HTML into various formats using the QT Webkit rendering engine.
 
 This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed module named [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf).
 
@@ -53,6 +55,12 @@ HTML URL to PDF
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## Secret Sauce
+
+The trick this package uses to make `wkhtmltopdf` run faster is to spawn several instances of `wkhtmltopdf` with the
+`--read-args-from-stdin` argument and then use one of those instances when a rendering request is made. At render time,
+this saves the time it takes to spawn and initialize `wkhtmltopdf`, which can be quite significant.
 
 ## Failed Attempts
 
