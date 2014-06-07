@@ -27,8 +27,7 @@
   "homepage": "https://github.com/tcort/wkhtmltox",
   "readmeFilename": "README.md",
   "dependencies": {
-    "slang": "0.3.x",
-    "underscore": "1.6.x"
+    "slang": "0.3.x"
   },
   "devDependencies": {
     "jshint": "2.5.x",
