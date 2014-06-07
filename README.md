@@ -30,6 +30,14 @@ HTML to PDF, JPG, PNG
     converter.pdf(html, { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
     converter.image(html, { format: "jpg" }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
     converter.image(html, { format: "png" }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
+    converter.version(function (err, version) {
+      if (err) {
+        // handle error here.
+      } else {
+        console.log(version.wkhtmltopdf);
+        console.log(version.wkhtmltoimage);
+      }
+    });
 
 ## Contributing
 

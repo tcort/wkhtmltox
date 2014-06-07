@@ -57,4 +57,28 @@ describe("wkhtmltox", function() {
             converter.image(kitchenSinkHtml, { format: "jpg" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.jpg"))).on("finish", done);
         });
     });
+    describe("version()", function () {
+         it("should be defined", function() {
+            expect(converter).to.have.property("version");
+        });
+        it("should be a function", function() {
+            expect(converter.version).to.be.a("function");
+        });
+        it("should retrieve the version string", function(done) {
+            converter.version(function versionCallback(err, version) {
+                expect(version).not.to.be(null);
+                expect(version).not.to.be(undefined);
+                expect(version).to.be.an('object');
+                expect(version).to.have.property('wkhtmltopdf');
+                expect(version).to.have.property('wkhtmltoimage');
+                expect(version.wkhtmltopdf).to.be.a('string');
+                expect(version.wkhtmltoimage).to.be.a('string');
+                expect(version.wkhtmltopdf.indexOf('wkhtmltopdf')).to.be(0);
+                expect(version.wkhtmltoimage.indexOf('wkhtmltoimage')).to.be(0);
+                expect(version.wkhtmltopdf.indexOf('\n')).to.be(-1);
+                expect(version.wkhtmltoimage.indexOf('\n')).to.be(-1);
+                done();
+            });
+        });
+    });
 });
