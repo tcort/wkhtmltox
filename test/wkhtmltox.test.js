@@ -73,8 +73,8 @@ describe("wkhtmltox", function() {
                 expect(version).to.have.property('wkhtmltoimage');
                 expect(version.wkhtmltopdf).to.be.a('string');
                 expect(version.wkhtmltoimage).to.be.a('string');
-                expect(version.wkhtmltopdf.indexOf('wkhtmltopdf')).to.be(0);
-                expect(version.wkhtmltoimage.indexOf('wkhtmltoimage')).to.be(0);
+                expect(version.wkhtmltopdf.indexOf('wkhtmltopdf')).not.to.be(-1);
+                expect(version.wkhtmltoimage.indexOf('wkhtmltoimage')).not.to.be(-1);
                 expect(version.wkhtmltopdf.indexOf('\n')).to.be(-1);
                 expect(version.wkhtmltoimage.indexOf('\n')).to.be(-1);
                 done();
