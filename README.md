@@ -1,9 +1,5 @@
 # wkhtmltox
 
-[![NPM](https://nodei.co/npm/wkhtmltox.png)](https://nodei.co/npm/wkhtmltox/)
-
-[![Build Status](https://api.travis-ci.org/tcort/wkhtmltox.png?branch=master)](http://travis-ci.org/tcort/wkhtmltox) [![Dependency Status](https://img.shields.io/gemnasium/tcort/wkhtmltox.svg)](https://gemnasium.com/tcort/wkhtmltox) [![NPM version](https://badge.fury.io/js/wkhtmltox.svg)](http://badge.fury.io/js/wkhtmltox)
-
 The goal of this module is to provide high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.
 Those two tools are from the [wkhtmltopdf](http://wkhtmltopdf.org/), a software package that
 provides utilities for rendering HTML into various formats using the QT Webkit rendering engine.
@@ -12,14 +8,16 @@ This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed mo
 
 ## Status
 
-Current Status: **Under Active Development** (do not use in production environments yet).
-
-Summary: Rendering PDFs and images from HTML works. I'm working on some changes to make it faster.
+Rendering PDFs and images from HTML works. I'm currently working on some changes to make it faster.
 
 ## Requirements
 
 * [nodejs](http://nodejs.org/)
 * [wkhtmltopdf/wkhtmltoimage](http://wkhtmltopdf.org/) v0.12 (with patched qt) or later.
+
+## Install
+
+    npm install wkhtmltox
 
 ## Examples
 
@@ -32,14 +30,15 @@ HTML to PDF, JPG, PNG
     var converter = new wkhtmltox();
 
     // if `wkhtmltopdf` or `wkhtmltoimage` is installed in a strange location, outside your PATH, you can specify the path like this:
-    converter.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf';
+    converter.wkhtmltopdf   = '/opt/local/bin/wkhtmltopdf';
+    converter.wkhtmltoimage = '/opt/local/bin/wkhtmltoimage';
 
-    // Convert to pdf. Function takes (inputStream, optionsObject).
-    converter.pdf(  fs.createReadStream('foo.html'), { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
+    // Convert to pdf. Function takes (inputStream, optionsObject), returns outputStream.
+    converter.pdf(fs.createReadStream('foo.html'), { pageSize: "letter" }).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
 
-    // Convert to image. Function takes (inputStream, optionsObject).
-    converter.image(fs.createReadStream('foo.html'), {   format: "jpg"   }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
-    converter.image(fs.createReadStream('foo.html'), {   format: "png"   }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
+    // Convert to image. Function takes (inputStream, optionsObject), returns outputStream.
+    converter.image(fs.createReadStream('foo.html'), { format: "jpg" }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
+    converter.image(fs.createReadStream('foo.html'), { format: "png" }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
 
 ## Contributing
 
