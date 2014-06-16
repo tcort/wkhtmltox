@@ -8,7 +8,7 @@ var wkhtmltox = require("../index");
 describe("wkhtmltox", function() {
     this.timeout(30000);
 
-    var kitchenSinkHtml = fs.readFileSync(path.join(__dirname, "input", "kitchen-sink.html"));
+    var kitchenSinkHtml = path.join(__dirname, "input", "kitchen-sink.html");
     var converter = new wkhtmltox();
 
     before(function() {
@@ -39,7 +39,7 @@ describe("wkhtmltox", function() {
             expect(converter.pdf).to.be.a("function");
         });
         it("should convert html to pdf from HTML string with pipe() output", function(done) {
-            converter.pdf(kitchenSinkHtml, { pageSize: "letter" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.pdf"))).on("finish", done);
+            converter.pdf(fs.createReadStream(kitchenSinkHtml), { pageSize: "letter" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.pdf"))).on("finish", done);
         });
     });
 
@@ -51,30 +51,10 @@ describe("wkhtmltox", function() {
             expect(converter.image).to.be.a("function");
         });
         it("should convert html to png", function(done) {
-            converter.image(kitchenSinkHtml, { format: "png" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.png"))).on("finish", done);
+            converter.image(fs.createReadStream(kitchenSinkHtml), { format: "png" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.png"))).on("finish", done);
         });
         it("should convert html to jpg", function(done) {
-            converter.image(kitchenSinkHtml, { format: "jpg" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.jpg"))).on("finish", done);
-        });
-    });
-    describe("version()", function () {
-         it("should be defined", function() {
-            expect(converter).to.have.property("version");
-        });
-        it("should be a function", function() {
-            expect(converter.version).to.be.a("function");
-        });
-        it("should retrieve the version string", function(done) {
-            converter.version(function versionCallback(err, version) {
-                expect(version).not.to.be(null);
-                expect(version).not.to.be(undefined);
-                expect(version).to.be.an('object');
-                expect(version).to.have.property('wkhtmltopdf');
-                expect(version).to.have.property('wkhtmltoimage');
-                expect(version.wkhtmltopdf).to.be.a('string');
-                expect(version.wkhtmltoimage).to.be.a('string');
-                done();
-            });
+            converter.image(fs.createReadStream(kitchenSinkHtml), { format: "jpg" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.jpg"))).on("finish", done);
         });
     });
 });

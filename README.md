@@ -25,19 +25,21 @@ Summary: Rendering PDFs and images from HTML works. I'm working on some changes 
 
 HTML to PDF, JPG, PNG
 
+    // include the node module
     var wkhtmltox = require("wkhtmltox");
+
+    // instantiate a new converter.
     var converter = new wkhtmltox();
-    converter.pdf(html, { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
-    converter.image(html, { format: "jpg" }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
-    converter.image(html, { format: "png" }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
-    converter.version(function (err, version) {
-      if (err) {
-        // handle error here.
-      } else {
-        console.log(version.wkhtmltopdf);
-        console.log(version.wkhtmltoimage);
-      }
-    });
+
+    // if `wkhtmltopdf` or `wkhtmltoimage` is installed in a strange location, outside your PATH, you can specify the path like this:
+    converter.wkhtmltopdf = '/usr/local/bin/wkhtmltopdf';
+
+    // Convert to pdf. Function takes (inputStream, optionsObject).
+    converter.pdf(  fs.createReadStream('foo.html'), { pageSize: "letter"}).pipe(fs.createWriteStream("foo.pdf")).on("finish", done);
+
+    // Convert to image. Function takes (inputStream, optionsObject).
+    converter.image(fs.createReadStream('foo.html'), {   format: "jpg"   }).pipe(fs.createWriteStream("foo.jpg")).on("finish", done);
+    converter.image(fs.createReadStream('foo.html'), {   format: "png"   }).pipe(fs.createWriteStream("foo.png")).on("finish", done);
 
 ## Contributing
 
