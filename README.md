@@ -7,11 +7,6 @@ provides utilities for rendering HTML into various formats using the QT Webkit r
 
 This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed module named [node-wkhtmltopdf](https://github.com/devongovett/node-wkhtmltopdf).
 
-Status
-------
-
-Rendering PDFs and images from HTML works. I'm currently working on some changes to make it faster.
-
 Requirements
 ------------
 
