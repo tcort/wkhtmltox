@@ -58,7 +58,7 @@ Here's a simple web server that converts HTML to PDF. Options can be supplied as
 
     var url = require('url');
     var http = require('http');
-    var wkhtmltox = require('../index');
+    var wkhtmltox = require('wkhtmltox');
     var converter = new wkhtmltox();
     
     http.createServer(function (req, res) {
