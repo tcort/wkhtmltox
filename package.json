@@ -28,7 +28,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "slang": "^0.3.0",
-    "underscore": "^1.8.3"
+    "lodash": "^3.9.3"
   },
   "devDependencies": {
     "jshint": "^2.8.0",
