@@ -28,12 +28,12 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "slang": "^0.3.0",
-    "lodash": "^3.9.3"
+    "lodash": "^3.10.1"
   },
   "devDependencies": {
     "jshint": "^2.8.0",
     "expect.js": "^0.3.1",
-    "mocha": "^2.2.5"
+    "mocha": "^2.3.3"
   },
   "engines": {
     "node": ">= 0.10.0"
