@@ -72,11 +72,3 @@ Access it with [curl](http://curl.haxx.se/)
 
     curl -d @test.html -s "http://localhost:1337/?copies=2" -o test.pdf
 
-Contributing
-------------
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
