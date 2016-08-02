@@ -5,8 +5,12 @@ addons:
   apt:
     sources:
     - pov-wkhtmltopdf
+    - ubuntu-toolchain-r-test
     packages:
     - wkhtmltopdf
+    - gcc-4.8
+    - g++-4.8
 before_install:
+  - export CXX="g++-4.8" CC="gcc-4.8"
   - wkhtmltopdf -V
 sudo: false
