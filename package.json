@@ -4,7 +4,7 @@
   "description": "high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.",
   "main": "index.js",
   "scripts": {
-    "pretest": "jshint lib test ./index.js",
+    "pretest": "jshint test ./index.js",
     "test": "mocha -R spec"
   },
   "repository": {
