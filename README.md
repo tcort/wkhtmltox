@@ -10,7 +10,7 @@ This module is based on an [MIT](http://opensource.org/licenses/MIT) licensed mo
 Requirements
 ------------
 
-* [nodejs](http://nodejs.org/) v0.10 or later.
+* [nodejs](http://nodejs.org/) v4 or later.
 * [wkhtmltopdf/wkhtmltoimage](http://wkhtmltopdf.org/) v0.12 (with patched qt) or later.
 
 Install
