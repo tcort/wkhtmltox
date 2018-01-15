@@ -45,7 +45,7 @@ declare class Wkhtmltox {
         maxWorkers?: number,
     })
 
-    public pdf(inputStream: NodeJS.ReadableStream, options?: Options & any): NodeJS.ReadableStream
+    public pdf(inputStream: NodeJS.ReadableStream, options?: Options & {}): NodeJS.ReadableStream
 
-    public image(inputStream: NodeJS.ReadableStream, options?: Options & any): NodeJS.ReadableStream
+    public image(inputStream: NodeJS.ReadableStream, options?: Options & {}): NodeJS.ReadableStream
 }
