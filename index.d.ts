@@ -29,17 +29,18 @@ interface Options {
     noImages?: true,
     enableJavascript?: true,
     disableJavascript?: true,
-    javascriptDelay?: true,
     javascriptDelay?: number,    // milliseconds
     zoom?: number,
 
 }
 
-declare class wkhtmltox {
+export = Wkhtmltox
+
+declare class Wkhtmltox {
     public wkhtmltopdf: string;
     public wkhtmltoimage: string;
 
-    constructor(opts: {
+    constructor(opts?: {
         interval?: number,
         maxWorkers?: number,
     })
