@@ -29,7 +29,8 @@
   "dependencies": {
     "lodash": "^4.17.4",
     "slang": "^0.3.0",
-    "tclogger": "^3.0.0"
+    "tclogger": "^3.0.0",
+    "@types/node": "~9.3.0"
   },
   "devDependencies": {
     "jshint": "^2.9.5",
