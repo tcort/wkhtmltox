@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "pretest": "jshint test ./index.js",
-    "test": "mocha -R spec"
+    "test": "mocha -R spec --exit"
   },
   "repository": {
     "type": "git",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "jshint": "^2.9.5",
     "expect.js": "^0.3.1",
-    "mocha": "^3.4.2"
+    "mocha": "^4.1.0"
   },
   "engines": {
     "node": ">= 0.10.0"
