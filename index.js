@@ -65,7 +65,7 @@ function wkhtmltox(opts) {
     // Preload a worker process. It will have wkhtmltopdf loaded, initialized and ready for input when pdf() is called.
     function launchWorker() {
         // using `sh -c ${cmd} | cat` construction because of an issue with stdin/stdout on Linux.
-        return spawn("/bin/sh", [ "-c", [ self.wkhtmltopdf, "--quiet", "--read-args-from-stdin" ].join(" ") + "| cat" ]);
+        return spawn("/bin/sh", [ "-c", [ self.wkhtmltopdf, "--quiet", "--read-args-from-stdin" ].join(" ") + "| cat" ], { detach: false });
     }
 
     // Given a worker process, stream the arguments and input over stdin and return stdout.
@@ -151,7 +151,7 @@ function wkhtmltox(opts) {
 
         // execute the command using the arguments provided.
         // using `sh -c ${cmd} | cat` construction because of an issue with stdin/stdout on Linux.
-        var child = spawn("/bin/sh", [ "-c", args.concat(["-","-"]).join(" ") + " | cat" ]);
+        var child = spawn("/bin/sh", [ "-c", args.concat(["-","-"]).join(" ") + " | cat" ], { detach: false });
 
         // send the program the input.
         inputStream.pipe(child.stdin);
