@@ -1,6 +1,6 @@
 {
   "name": "wkhtmltox",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "high performance access to `wkhtmltopdf` and `wkhtmltoimage` from node.js.",
   "main": "index.js",
   "scripts": {
