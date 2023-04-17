@@ -1,7 +1,7 @@
 "use strict";
 
 var _ = require('lodash');
-var log = require('tclogger');
+var log = require('ssi-logger');
 var os = require('os');
 var slang = require("slang");
 var spawn = require("child_process").spawn;
