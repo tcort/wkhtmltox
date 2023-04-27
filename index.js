@@ -100,6 +100,7 @@ function wkhtmltox(opts) {
         });
 
         worker.stdin.once('error', function (err) {
+            self.emit('workerInputError', err);
             log('ERROR', 'wkhtmltox worker input stream error', err);
         });
 
