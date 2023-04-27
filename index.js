@@ -1,7 +1,6 @@
 "use strict";
 
 var _ = require('lodash');
-var log = require('ssi-logger');
 var os = require('os');
 var slang = require("slang");
 var spawn = require("child_process").spawn;
@@ -101,7 +100,6 @@ function wkhtmltox(opts) {
 
         worker.stdin.once('error', function (err) {
             self.emit('workerInputError', err);
-            log('ERROR', 'wkhtmltox worker input stream error', err);
         });
 
         // send the program the arguments
