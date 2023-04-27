@@ -29,8 +29,7 @@
   "dependencies": {
     "@types/node": "~18.15.11",
     "lodash": "^4.17.21",
-    "slang": "^0.3.0",
-    "ssi-logger": "^5.1.3"
+    "slang": "^0.3.0"
   },
   "devDependencies": {
     "expect.js": "^0.3.1",

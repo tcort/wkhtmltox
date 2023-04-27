@@ -41,6 +41,19 @@ describe("wkhtmltox", function() {
         it("should convert html to pdf from HTML string with pipe() output", function(done) {
             converter.pdf(fs.createReadStream(kitchenSinkHtml), { pageSize: "letter" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.pdf"))).on("finish", done);
         });
+        it("should take receive an error via workerInputError event", function(done) {
+            var anotherConverter = new wkhtmltox({ maxWorkers: 1 });
+            process.nextTick(function() {
+                anotherConverter.on("workerInputError", function(err) {
+                    expect(err).to.be.an(Error);
+                    done();
+                });
+                // When stdin.end() is called before the stream starts, ERR_STREAM_WRITE_AFTER_END is thrown.
+                anotherConverter.workers[0].stdin.end();
+                anotherConverter.pdf(fs.createReadStream(kitchenSinkHtml), { pageSize: "letter" }).pipe(fs.createWriteStream(path.join(__dirname, "output", "kitchen-sink.pdf")));
+            });
+        });
+
     });
 
     describe("image()", function() {

@@ -1,16 +1,17 @@
 "use strict";
 
 var _ = require('lodash');
-var log = require('ssi-logger');
 var os = require('os');
 var slang = require("slang");
 var spawn = require("child_process").spawn;
+var EventEmitter = require("events").EventEmitter;
 
 /*
  * Portions of this code are based on MIT licensed code from: https://github.com/devongovett/node-wkhtmltopdf
  */
 function wkhtmltox(opts) {
 
+    EventEmitter.call(this);
     var self = this;
 
     // create an instance of wkhtmltox if the user decided not to use 'new'.
@@ -98,7 +99,7 @@ function wkhtmltox(opts) {
         });
 
         worker.stdin.once('error', function (err) {
-            log('ERROR', 'wkhtmltox worker input stream error', err);
+            self.emit('workerInputError', err);
         });
 
         // send the program the arguments
@@ -163,4 +164,5 @@ function wkhtmltox(opts) {
     return self;
 }
 
+wkhtmltox.prototype = Object.create(EventEmitter.prototype);
 module.exports = wkhtmltox;
