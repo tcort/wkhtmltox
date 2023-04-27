@@ -5,12 +5,14 @@ var log = require('ssi-logger');
 var os = require('os');
 var slang = require("slang");
 var spawn = require("child_process").spawn;
+var EventEmitter = require("events").EventEmitter;
 
 /*
  * Portions of this code are based on MIT licensed code from: https://github.com/devongovett/node-wkhtmltopdf
  */
 function wkhtmltox(opts) {
 
+    EventEmitter.call(this);
     var self = this;
 
     // create an instance of wkhtmltox if the user decided not to use 'new'.
@@ -163,4 +165,5 @@ function wkhtmltox(opts) {
     return self;
 }
 
+wkhtmltox.prototype = Object.create(EventEmitter.prototype);
 module.exports = wkhtmltox;
